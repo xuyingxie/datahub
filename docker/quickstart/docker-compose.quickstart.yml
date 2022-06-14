@@ -66,11 +66,12 @@ services:
     - mysql
     environment:
     - DATASET_ENABLE_SCSI=false
-    - EBEAN_DATASOURCE_USERNAME=datahub
-    - EBEAN_DATASOURCE_PASSWORD=datahub
-    - EBEAN_DATASOURCE_HOST=mysql:3306
-    - EBEAN_DATASOURCE_URL=jdbc:mysql://mysql:3306/datahub?verifyServerCertificate=false&useSSL=true&useUnicode=yes&characterEncoding=UTF-8&enabledTLSProtocols=TLSv1.2
-    - EBEAN_DATASOURCE_DRIVER=com.mysql.jdbc.Driver
+    - EBEAN_DATASOURCE_USERNAME=SYSTEM
+    - EBEAN_DATASOURCE_PASSWORD=Welcome12345
+    - EBEAN_DATASOURCE_HOST=146.56.96.37:1521
+    - EBEAN_DATASOURCE_URL=jdbc:oracle:thin:@//146.56.96.37:1521/ORCLCDB
+    - EBEAN_DATASOURCE_DRIVER=oracle.jdbc.driver.OracleDriver
+
     - KAFKA_BOOTSTRAP_SERVER=broker:29092
     - KAFKA_SCHEMAREGISTRY_URL=http://schema-registry:8081
     - ELASTICSEARCH_HOST=elasticsearch

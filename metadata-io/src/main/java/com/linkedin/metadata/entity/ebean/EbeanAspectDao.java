@@ -448,7 +448,7 @@ public class EbeanAspectDao implements AspectDao {
 
     T result = null;
     do {
-      try (Transaction transaction = _server.beginTransaction(TxScope.requiresNew().setIsolation(TxIsolation.REPEATABLE_READ))) {
+      try (Transaction transaction = _server.beginTransaction(TxScope.requiresNew().setIsolation(TxIsolation.READ_COMMITED))) {
         transaction.setBatchMode(true);
         result = block.get();
         transaction.commit();
@@ -468,14 +468,14 @@ public class EbeanAspectDao implements AspectDao {
 
   public long getNextVersion(@Nonnull final String urn, @Nonnull final String aspectName) {
     validateConnection();
-    final List<EbeanAspectV2.PrimaryKey> result = _server.find(EbeanAspectV2.class)
+    final List<EbeanAspectV2> result = _server.find(EbeanAspectV2.class)
         .where()
         .eq(EbeanAspectV2.URN_COLUMN, urn.toString())
         .eq(EbeanAspectV2.ASPECT_COLUMN, aspectName)
         .orderBy()
         .desc(EbeanAspectV2.VERSION_COLUMN)
         .setMaxRows(1)
-        .findIds();
+        .findList();
 
     return result.isEmpty() ? 0 : result.get(0).getVersion() + 1L;
   }

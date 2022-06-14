@@ -68,7 +68,7 @@ public class IngestDataPlatformInstancesStep implements BootstrapStep {
       return;
     }
 
-    int numEntities = _server.find(EbeanAspectV2.class).setDistinct(true).select(EbeanAspectV2.URN_COLUMN).findCount();
+    int numEntities = _server.find(EbeanAspectV2.class).setDistinct(true).select(EbeanAspectV2.URN_COLUMN).findList().size();
     int start = 0;
 
     while (start < numEntities) {

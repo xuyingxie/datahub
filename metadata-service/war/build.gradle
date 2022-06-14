@@ -3,6 +3,7 @@ apply plugin: 'war'
 ext.apiProject = project(':metadata-service:restli-api')
 
 dependencies {
+  implementation fileTree(dir: '/opt/oracle/instantclient_19_15', includes: ['*.jar'])
   runtime project(':metadata-service:factories')
   runtime project(':metadata-service:auth-filter')
   runtime project(':metadata-service:servlet')

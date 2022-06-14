@@ -30,8 +30,8 @@ public class AspectStorageValidationUtil {
 
   public static boolean checkV2TableExists(EbeanServer server) {
     final String queryStr =
-        "SELECT * FROM INFORMATION_SCHEMA.TABLES \n"
-            + "WHERE TABLE_NAME = 'metadata_aspect_v2'";
+            "SELECT * FROM user_tables \n"
+                    + "WHERE TABLE_NAME = 'METADATA_ASPECT_V2'";
 
     final SqlQuery query = server.createSqlQuery(queryStr);
     final List<SqlRow> rows = query.findList();
@@ -40,11 +40,14 @@ public class AspectStorageValidationUtil {
 
   public static boolean checkV1TableExists(EbeanServer server) {
     final String queryStr =
-        "SELECT * FROM INFORMATION_SCHEMA.TABLES \n"
-            + "WHERE TABLE_NAME = 'metadata_aspect'";
+            "SELECT * FROM user_tables \n"
+                    + "WHERE TABLE_NAME = 'METADATA_ASPECT'";
 
     final SqlQuery query = server.createSqlQuery(queryStr);
     final List<SqlRow> rows = query.findList();
     return rows.size() > 0;
   }
 }
+
+
+

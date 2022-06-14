@@ -6,6 +6,7 @@ configurations {
 }
 
 dependencies {
+  implementation fileTree(dir: '/opt/oracle/instantclient_19_15', includes: ['*.jar'])
   implementation 'com.github.java-json-tools:json-patch:1.13'
   compile project(':entity-registry')
   compile project(':metadata-utils')
